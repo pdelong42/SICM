@@ -118,3 +118,17 @@
 )
 
 (define q (find-path (L-harmonic 1.0 1.0) 0. 1. :pi/2 0. 3))
+
+(define win2 (frame 0. :pi/2 0. 1.2))
+
+(define
+   (  (parametric-path-action Lagrangian t0 q0 t1 q1) intermediate-qs)
+   (let
+      (  (path (make-path t0 q0 t1 q1 intermediate-qs)))
+      (graphics-clear win2)
+      (plot-function win2 path t0 t1 (/ (- t1 t0) 100))
+      (Lagrangian-action Lagrangian path t0 t1)
+   )
+)
+
+(find-path (L-harmonic 1. 1.) 0. 1. :pi/2 0. 2)
