@@ -27,14 +27,15 @@
    )
 )
 
-;(show-expression
-;   (  (compose
-;         (L-free-particle 'm)
-;         (Gamma q)
-;      )
-;      't
-;   )
-;)
+;; This works in MacOS X, but not in Linux
+(show-expression
+   (  (compose
+         (L-free-particle 'm)
+         (Gamma q)
+      )
+      't
+   )
+)
 
 (define
    (Lagrangian-action L q t1 t2)
@@ -50,6 +51,7 @@
    )
 )
 
+; this works in Linux, but not in MacOS X, and I don't know why
 (Lagrangian-action
    (L-free-particle 3.0)
    test-path
