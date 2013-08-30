@@ -82,3 +82,5 @@
 )
 
 (  (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001)
+
+(minimize (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) -2.0 1.0)
