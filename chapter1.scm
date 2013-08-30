@@ -103,3 +103,18 @@
       )
    )
 )
+
+(define
+   (  (L-harmonic m k) local)
+   (let
+      (  (q (coordinate local))
+         (v (velocity   local))
+      )
+      (-
+         (* 1/2 m (square v))
+         (* 1/2 k (square q))
+      )
+   )
+)
+
+(define q (find-path (L-harmonic 1.0 1.0) 0. 1. :pi/2 0. 3))
