@@ -58,3 +58,27 @@
    0.0
    10.0
 )
+
+(define
+   (  (make-eta nu t1 t2) t)
+   (*
+      (- t t1)
+      (- t t2)
+      (nu t)
+   )
+)
+
+(define
+   (  (varied-free-particle-action mass q nu t1 t2) epsilon)
+   (let
+      (  (eta (make-eta nu t1 t2)))
+      (Lagrangian-action
+         (L-free-particle mass)
+         (+ q (* epsilon eta))
+         t1
+         t2
+      )
+   )
+)
+
+(  (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001)
