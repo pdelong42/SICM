@@ -84,3 +84,22 @@
 (  (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001)
 
 (minimize (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) -2.0 1.0)
+
+(define
+   (  (parametric-path-action Lagrangian t0 q0 t1 q1) qs)
+   (let
+      (  (path (make-path t0 q0 t1 q1 qs)))
+      (Lagrangian-action Lagrangian path t0 t1)
+   )
+)
+
+(define
+   (find-path Lagrangian t0 q0 t1 q1 n)
+   (let
+      (  (initial-qs (linear-interpolants q0 q1 n)))
+      (let
+         (  (minimizing-qs (multidimensional-minimize (parametric-path-action Lagrangian t0 q0 t1 q1) initial-qs)))
+         (make-path t0 q0 t1 q1 minimizing-qs)
+      )
+   )
+)
