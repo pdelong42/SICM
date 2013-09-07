@@ -23,8 +23,7 @@
 (print-expression ((compose cube sin) 'a))
 
 (print-expression
-   (
-      (-
+   (  (-
          (+
             (square sin)
             (square cos)
@@ -34,3 +33,18 @@
       'a
    )
 )
+
+(print-expression ((literal-function 'f) 'x))
+
+(print-expression
+   (  (compose
+         (literal-function 'f)
+         (literal-function 'g)
+      )
+      'x
+   )
+)
+
+(define g (literal-function 'g (-> (X Real Real) Real)))
+
+(print-expression (g 'x 'y))
