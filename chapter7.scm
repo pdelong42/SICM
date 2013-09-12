@@ -48,3 +48,76 @@
 (define g (literal-function 'g (-> (X Real Real) Real)))
 
 (print-expression (g 'x 'y))
+
+(define v (up 'v^0 'v^1 'v^2))
+
+(print-expression v)
+
+(define p (down 'p_0 'p_1 'p_2))
+
+(print-expression p)
+
+(define s (up 't (up 'x 'y) (down 'p_x 'p_y)))
+
+(print-expression s)
+
+((component 0 1) (up (up 'a 'b) (up 'c 'd)))
+
+(ref (up 'a 'b 'c) 1)
+
+(ref (up (up 'a 'b) (up 'c 'd)) 0 1)
+
+(print-expression (* p v))
+
+(define derivative-of-sine (D sin))
+
+(print-expression (derivative-of-sine 'x))
+
+(print-expression
+   (  (  (*
+            (- D 1)
+            (+ D 1)
+         )
+         (literal-function 'f)
+      )
+      'x
+   )
+)
+
+(print-expression ((D g) 'x 'y))
+
+(define
+   (h s)
+   (  g
+      (ref s 0)
+      (ref s 1)
+   )
+)
+
+(print-expression (h (up 'x 'y)))
+
+(print-expression ((D g) 'x 'y))
+
+(print-expression
+   (  (D h)
+      (up 'x 'y)
+   )
+)
+
+(define H
+   (literal-function
+      'H
+      (->
+         (UP
+            Real
+            (UP Real Real)
+            (DOWN Real Real)
+         )
+         Real
+      )
+   )
+)
+
+(print-expression (H s))
+
+(print-expression ((D H) s))
