@@ -121,3 +121,70 @@
 (print-expression (H s))
 
 (print-expression ((D H) s))
+
+(define
+   (helix t)
+   (up
+      (cos t)
+      (sin t)
+      t
+   )
+)
+
+(define helix (up cos sin identity))
+
+(print-expression ((D helix) 't))
+
+(define
+   (g x y)
+   (up
+      (square (+ x y))
+      (cube   (- y x))
+      (exp    (+ x y))
+   )
+)
+
+(print-expression ((D g) 'x 'y))
+
+(define
+   (f x y)
+   (*
+      (square x)
+      (cube y)
+   )
+)
+
+(define
+   (g x y)
+   (up (f x y) y)
+)
+
+(define
+   (h x y)
+   (f (f x y) y)
+)
+
+(define
+   (f v)
+   (let
+      (  (x (ref v 0))
+         (y (ref v 1))
+      )
+      (*
+         (square x)
+         (cube y)
+      )
+   )
+)
+
+(define
+   (g v)
+   (let
+      (  (x (ref v 0))
+         (y (ref v 1))
+      )
+      (up (f v) y)
+   )
+)
+
+(define h (compose f g))
