@@ -3,10 +3,7 @@
    (sqrt
       (+
          (square (- x2 x1))
-         (square (- y2 y1))
-      )
-   )
-)
+         (square (- y2 y1))  )  )  )
 
 (define h (compose cube sin))
 
@@ -26,24 +23,17 @@
    (  (-
          (+
             (square sin)
-            (square cos)
-         )
-         1
-      )
-      'a
-   )
-)
+            (square cos)  )
+         1  )
+      'a  )  )
 
 (print-expression ((literal-function 'f) 'x))
 
 (print-expression
    (  (compose
          (literal-function 'f)
-         (literal-function 'g)
-      )
-      'x
-   )
-)
+         (literal-function 'g)  )
+      'x  )  )
 
 (define g (literal-function 'g (-> (X Real Real) Real)))
 
@@ -78,11 +68,8 @@
             (- D 1)
             (+ D 1)
          )
-         (literal-function 'f)
-      )
-      'x
-   )
-)
+         (literal-function 'f)  )
+      'x  )  )
 
 (print-expression ((D g) 'x 'y))
 
@@ -90,9 +77,7 @@
    (h s)
    (  g
       (ref s 0)
-      (ref s 1)
-   )
-)
+      (ref s 1)  )  )
 
 (print-expression (h (up 'x 'y)))
 
@@ -100,9 +85,7 @@
 
 (print-expression
    (  (D h)
-      (up 'x 'y)
-   )
-)
+      (up 'x 'y)  )  )
 
 (define H
    (literal-function
@@ -111,12 +94,8 @@
          (UP
             Real
             (UP Real Real)
-            (DOWN Real Real)
-         )
-         Real
-      )
-   )
-)
+            (DOWN Real Real)  )
+         Real  )  )  )
 
 (print-expression (H s))
 
@@ -127,9 +106,7 @@
    (up
       (cos t)
       (sin t)
-      t
-   )
-)
+      t  )  )
 
 (define helix (up cos sin identity))
 
@@ -140,9 +117,7 @@
    (up
       (square (+ x y))
       (cube   (- y x))
-      (exp    (+ x y))
-   )
-)
+      (exp    (+ x y))  )  )
 
 (print-expression ((D g) 'x 'y))
 
@@ -150,19 +125,15 @@
    (f x y)
    (*
       (square x)
-      (cube y)
-   )
-)
+      (cube y)  )  )
 
 (define
    (g x y)
-   (up (f x y) y)
-)
+   (up (f x y) y)  )
 
 (define
    (h x y)
-   (f (f x y) y)
-)
+   (f (f x y) y)  )
 
 (define
    (f v)
@@ -172,10 +143,7 @@
       )
       (*
          (square x)
-         (cube y)
-      )
-   )
-)
+         (cube y)  )  )  )
 
 (define
    (g v)
@@ -183,8 +151,6 @@
       (  (x (ref v 0))
          (y (ref v 1))
       )
-      (up (f v) y)
-   )
-)
+      (up (f v) y)  )  )
 
 (define h (compose f g))
