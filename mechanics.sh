@@ -11,4 +11,4 @@ BASE=$(cat .basedir)
 
 test -d $BASE || errexit
 
-exec ${BASE}/mit-scheme/bin/scheme --library ${BASE}/mit-scheme/lib --heap 10000 --band edwin-mechanics.com $*
+exec ${BASE}/mit-scheme/bin/scheme --library ${BASE}/mit-scheme/lib --heap 12000 --band edwin-mechanics.com $*
