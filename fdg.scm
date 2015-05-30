@@ -67,7 +67,7 @@
 
 (define temp1a (((partial 1) (sphere->R3 'R)) demo1a))
 
-(define temp1b (define temp1b (* temp1a (velocity demo1a))))
+(define temp1b (* temp1a (velocity demo1a)))
 
 (define demo1b ((Lsphere 'm 'R) demo1a))
 
