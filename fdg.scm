@@ -69,6 +69,8 @@
 
 (define temp1b (* temp1a (velocity demo1a)))
 
+(define temp1c (square temp1b))
+
 (define demo1b ((Lsphere 'm 'R) demo1a))
 
 (define
