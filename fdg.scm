@@ -1,3 +1,4 @@
+;
 ; Functional Differential Geometry
 
 ; Prologue
@@ -23,11 +24,13 @@
    (proposed-solution t)
    (* 'a (cos (+ (* 'omega t) 'phi)))  )
 
-(((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't)
+(define demo0a
+   (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't)  )
 
-(  (  (Lagrange-equations (L-harmonic 'm 'k))
-      (literal-function 'x)  )
-   't  )
+(define demo0b
+   (  (  (Lagrange-equations (L-harmonic 'm 'k))
+         (literal-function 'x)  )
+      't  )  )
 
 ; Chapter 1
 
@@ -60,8 +63,13 @@
    (Lsphere m R)
    (compose (Lfree m) (F->C (sphere->R3 R)))  )
 
-(  (Lsphere 'm 'R)
-   (up 't (up 'theta 'phi) (up 'thetadot 'phidot))  )
+(define demo1a (up 't (up 'theta 'phi) (up 'thetadot 'phidot)))
+
+(define temp1a (((partial 1) (sphere->R3 'R)) demo1a))
+
+(define temp1b (define temp1b (* temp1a (velocity demo1a))))
+
+(define demo1b ((Lsphere 'm 'R) demo1a))
 
 (define
    ((L2 mass metric) place velocity)
@@ -81,12 +89,13 @@
 
 (define L (Lc 'm the-metric R2-rect))
 
-(L (up 't (up 'x 'y) (up 'vx 'vy)))
+(define demo1c (L (up 't (up 'x 'y) (up 'vx 'vy))))
 
 (define gamma (literal-manifold-map 'q R1-rect R2-rect))
 
-(  (chart R2-rect)
-   (gamma ((point R1-rect) 't))  )
+(define demo1d
+   (  (chart R2-rect)
+      (gamma ((point R1-rect) 't))  )  )
 
 (define coordinate-path
    (compose
@@ -94,7 +103,7 @@
       gamma
       (point R1-rect)  )  )
 
-(coordinate-path 't)
+(define demo1e (coordinate-path 't))
 
 (define Lagrange-residuals
    (((Lagrange-equations L) coordinate-path) 't)  )
@@ -113,7 +122,20 @@
 (define metric-components
    (metric->components the-metric (coordinate-system->basis R2-rect))  )
 
-(- Lagrange-residuals
-   (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals))
+(define demo1f
+   (- Lagrange-residuals
+      (* (* 'm (metric-components (gamma ((point R1-rect) 't)))) geodesic-equation-residuals)  )  )
 
 ; Chapter 2
+
+(define R2 (make-manifold R^n 2))
+
+(define U (patch 'origin R2))
+
+(define R2-rect  (coordinate-system 'rectangular       U))
+(define R2-polar (coordinate-system 'polar/cylindrical U))
+
+(define R2-rect-chi          (chart R2-rect))
+(define R2-rect-chi-inverse  (point R2-rect))
+(define R2-polar-chi         (chart R2-polar))
+(define R2-polar-chi-inverse (point R2-polar))
