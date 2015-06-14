@@ -32,6 +32,10 @@
          (literal-function 'x)  )
       't  )  )
 
+;(show-expression demo0a)
+
+;(show-expression demo0b)
+
 ; Chapter 1
 
 (define
@@ -73,6 +77,8 @@
 
 (define demo1b ((Lsphere 'm 'R) demo1a))
 
+;(print-expression demo1b)
+
 (define
    ((L2 mass metric) place velocity)
    (* 1/2 mass ((metric velocity velocity) place))  )
@@ -93,11 +99,15 @@
 
 (define demo1c (L (up 't (up 'x 'y) (up 'vx 'vy))))
 
+;(print-expression demo1c)
+
 (define gamma (literal-manifold-map 'q R1-rect R2-rect))
 
 (define demo1d
    (  (chart R2-rect)
       (gamma ((point R1-rect) 't))  )  )
+
+;(print-expression demo1d)
 
 (define coordinate-path
    (compose
@@ -106,6 +116,8 @@
       (point R1-rect)  )  )
 
 (define demo1e (coordinate-path 't))
+
+;(print-expression demo1e)
 
 (define Lagrange-residuals
    (((Lagrange-equations L) coordinate-path) 't)  )
