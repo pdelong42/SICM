@@ -10,22 +10,20 @@
       (literal-function 'y)
       (literal-function 'z)  )  )
 
-(print-expression (q 't))
+(define demo1a (q 't))
 
-(print-expression ((D q) 't))
+(define demo1b ((D q) 't))
 
-(print-expression
+(define demo1c ((Gamma q) 't))
+
+(define demo1d
    (  (compose
          (L-free-particle 'm)
          (Gamma q)  )
       't  )  )
 
-;; This works in MacOS X, but not in Linux
-(show-expression
-   (  (compose
-         (L-free-particle 'm)
-         (Gamma q)  )
-      't  )  )
+;; This worked in MacOS but not in Linux, the last time I checked
+;(show-expression demo1d)
 
 (define
    (Lagrangian-action L q t1 t2)
@@ -38,8 +36,7 @@
       (+ (* 3 t) 5)
       (+ (* 2 t) 1)  )  )
 
-; this works in Linux, but not in MacOS X, and I don't know why
-(Lagrangian-action (L-free-particle 3.0) test-path 0.0 10.0)
+(define demo1e (Lagrangian-action (L-free-particle 3.0) test-path 0.0 10.0))
 
 (define
    (  (make-eta nu t1 t2) t)
@@ -49,18 +46,20 @@
       (nu t)  )  )
 
 (define
-   (  (varied-free-particle-action mass q nu t1 t2) epsilon  )
+   (  (varied-free-particle-action mass q nu t1 t2) eps  )
    (let
       (  (eta (make-eta nu t1 t2)))
       (Lagrangian-action
          (L-free-particle mass)
-         (+ q (* epsilon eta))
+         (+ q (* eps eta))
          t1
          t2  )  )  )
 
-(  (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001  )
+(define demo1f
+   (  (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) 0.001  )  )
 
-(minimize (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) -2.0 1.0)
+(define demo1g
+   (minimize (varied-free-particle-action 3.0 test-path (up sin cos square) 0.0 10.0) -2.0 1.0)  )
 
 (define
    (  (parametric-path-action Lagrangian t0 q0 t1 q1) qs)
@@ -98,4 +97,5 @@
       (plot-function win2 path t0 t1 (/ (- t1 t0) 100))
       (Lagrangian-action Lagrangian path t0 t1)  )  )
 
-(find-path (L-harmonic 1. 1.) 0. 1. :pi/2 0. 2)
+(define demo1h
+   (find-path (L-harmonic 1. 1.) 0. 1. :pi/2 0. 2)  )
