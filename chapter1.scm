@@ -22,7 +22,6 @@
          (Gamma q)  )
       't  )  )
 
-;; This worked in MacOS but not in Linux, the last time I checked
 ;(show-expression demo1d)
 
 (define
