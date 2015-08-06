@@ -11,4 +11,11 @@ BASE=$(cat .basedir)
 
 test -d $BASE || errexit
 
-exec ${BASE}/mit-scheme/bin/scheme --library ${BASE}/mit-scheme/lib --heap 12000 --band edwin-mechanics.com $*
+if command -v rlwrap ; then
+   READLINE="rlwrap -r -c"
+#   READLINE="rlwrap -r -c -f scheme_completion.txt
+else
+   READLINE=""
+fi
+
+exec $READLINE ${BASE}/mit-scheme/bin/scheme --library ${BASE}/mit-scheme/lib --heap 12000 --band edwin-mechanics.com $*
