@@ -12,8 +12,7 @@ BASE=$(cat .basedir)
 test -d $BASE || errexit
 
 if command -v rlwrap ; then
-   READLINE="rlwrap -r -c"
-#   READLINE="rlwrap -r -c -f scheme_completion.txt
+   READLINE="rlwrap -r -c -f scheme_completion.txt"
 else
    READLINE=""
 fi
