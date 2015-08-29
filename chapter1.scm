@@ -135,12 +135,12 @@
 (define
    ((L-central-polar m V) local)
    (let
-      (  (q (coordinate local))
+      (  (q  (coordinate local))
          (qdot (velocity local))  )
       (let
-         (  (r (ref q 0))
-            (phi (ref q 1))
-            (rdot (ref qdot 0))
+         (  (r      (ref q    0))
+            (phi    (ref q    1))
+            (rdot   (ref qdot 0))
             (phidot (ref qdot 1))  )
          (- (* 1/2 m
                (+ (square rdot)
@@ -150,3 +150,21 @@
 (define
    ((gravitational-energy G m1 m2) r)
    (- (/ (* G m1 m2) r))  )
+
+(define
+   ((L-uniform-acceleration m g) local)
+   (let
+      (  (q  (coordinate local))
+         (v    (velocity local))  )
+      (let
+         ((y (ref q 1)))
+         (- (* 1/2 m (square v))
+            (* m g y)  )  )  )  )
+
+(define demo1l
+   (  ((Lagrange-equations (L-uniform-acceleration 'm 'g))
+      (up
+         (literal-function 'x)
+         (literal-function 'y)  )  ) 't  )  )
+
+(show-expression demo1l)
