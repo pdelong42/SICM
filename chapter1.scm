@@ -78,13 +78,15 @@
    (  (L-harmonic m k) local)
    (let
       (  (q (coordinate local))
-         (v (velocity   local))
-      )
-      (-
-         (* 1/2 m (square v))
+         (v (velocity   local))  )
+      (- (* 1/2 m (square v))
          (* 1/2 k (square q))  )  )  )
 
 (define q (find-path (L-harmonic 1.0 1.0) 0. 1. :pi/2 0. 3))
+
+; ToDo: take the following definitions, up to and including demo1h,
+; and encapsulate them into a single variable such that none of the
+; code gets evaulated unless that variable is.
 
 (define win2 (frame 0. :pi/2 0. 1.2))
 
@@ -97,4 +99,26 @@
       (Lagrangian-action Lagrangian path t0 t1)  )  )
 
 (define demo1h
-   (find-path (L-harmonic 1. 1.) 0. 1. :pi/2 0. 2)  )
+  (find-path (L-harmonic 1. 1.) 0. 1. :pi/2 0. 2)  )
+
+(define
+   ((Lagrange-equations Lagrangian) q)
+   (- (D (compose ((partial 2) Lagrangian) (Gamma q)))
+         (compose ((partial 1) Lagrangian) (Gamma q))  )  )
+
+(define
+   (test-path t)
+   (up
+      (+ (* 'a t) 'a0)
+      (+ (* 'b t) 'b0)
+      (+ (* 'c t) 'c0)  )  )
+
+(define demo1i (((Lagrange-equations (L-free-particle 'm)) test-path) 't))
+
+;(print-expression demo1i)
+
+(define demo1j
+   (  (  (Lagrange-equations (L-free-particle 'm))
+         (literal-function 'x)  ) 't  )  )
+
+;(show-expression demo1j)
