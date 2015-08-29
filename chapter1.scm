@@ -131,3 +131,22 @@
    (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't)  )
 
 ;(show-expression demo1k)
+
+(define
+   ((L-central-polar m V) local)
+   (let
+      (  (q (coordinate local))
+         (qdot (velocity local))  )
+      (let
+         (  (r (ref q 0))
+            (phi (ref q 1))
+            (rdot (ref qdot 0))
+            (phidot (ref qdot 1))  )
+         (- (* 1/2 m
+               (+ (square rdot)
+                  (square (* r phidot))  )  )
+            (V r)  )  )  )  )
+
+(define
+   ((gravitational-energy G m1 m2) r)
+   (- (/ (* G m1 m2) r))  )
