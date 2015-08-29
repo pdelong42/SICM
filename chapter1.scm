@@ -122,3 +122,12 @@
          (literal-function 'x)  ) 't  )  )
 
 ;(show-expression demo1j)
+
+(define
+   (proposed-solution t)
+   (* 'A (cos (+ (* 'omega t) 'phi)))  )
+
+(define demo1k
+   (((Lagrange-equations (L-harmonic 'm 'k)) proposed-solution) 't)  )
+
+;(show-expression demo1k)
