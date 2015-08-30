@@ -167,4 +167,4 @@
          (literal-function 'x)
          (literal-function 'y)  )  ) 't  )  )
 
-(show-expression demo1l)
+;(show-expression demo1l)
