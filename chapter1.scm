@@ -168,3 +168,20 @@
          (literal-function 'y)  )  ) 't  )  )
 
 ;(show-expression demo1l)
+
+(define
+   ((L-central-rectangular m U) local)
+   (let
+      (  (q (coordinate local))
+         (v (velocity   local))  )
+      (- (* 1/2 m (square v))
+         (U (sqrt (square q)))  )  )  )
+
+(define demo1m
+   (  (  (Lagrange-equations (L-central-rectangular 'm (literal-function 'U)))
+         (up
+            (literal-function 'x)
+            (literal-function 'y)  )  )
+         't  )  )
+
+(show-expression demo1m)
