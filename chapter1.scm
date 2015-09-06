@@ -209,3 +209,47 @@
          (literal-function 'phi)  )  ) 't  )  )
 
 ;(show-expression demo1n)
+
+(define
+   ((F->C F) local)
+   (up
+      (time local)
+      (F    local)
+      (+    (((partial 0) F) local)
+         (* (((partial 1) F) local)
+            (velocity        local)  )  )  )  )
+
+(define
+   (p->r local)
+   (let
+      ((polar-tuple (coordinate local)))
+      (let
+         (  (r   (ref polar-tuple 0))
+            (phi (ref polar-tuple 0))  )
+         (let
+            (  (x (* r (cos phi)))
+               (y (* r (sin phi)))  )
+            (up x y)  )  )  )  )
+
+(define demo1o
+   (velocity
+      (  (F->C p->r)
+         (up 't
+            (up 'r    'phi)
+            (up 'rdot 'phidot)  )  )  )  )
+
+;(show-expression demo1o)
+
+(define
+   (L-central-polar m U)
+   (compose
+      (L-central-rectangular m U)
+      (F->C p->r)  )  )
+
+(define demo1p
+   (  (L-central-polar 'm (literal-function 'U))
+      (up 't
+         (up 'r    'phi)
+         (up 'rdot 'phidot)  )  )  )
+
+(show-expression demo1p)
