@@ -222,7 +222,7 @@
 (define
    (p->r local)
    (let
-      ((polar-tuple (coordinate local)))
+      (  (polar-tuple (coordinate local)))
       (let
          (  (r   (ref polar-tuple 0))
             (phi (ref polar-tuple 0))  )
@@ -252,4 +252,49 @@
          (up 'r    'phi)
          (up 'rdot 'phidot)  )  )  )
 
-(show-expression demo1p)
+;(show-expression demo1p)
+
+(define
+   ((L-free-rectangular m) local)
+   (let
+      (  (vx (ref (velocities local) 0))
+         (vy (ref (velocities local) 1))  )
+      (* 1/2 m (+ (square vx) (square vy)))  )  )
+
+(define
+   (L-free-polar m)
+   (compose
+      (L-free-rectangular m)
+      (F->C p->r)  )  )
+
+(define
+   ((F Omega) local)
+   (let
+      (  (t                 (time local))
+         (r     (ref (coordinates local) 0))
+         (theta (ref (coordinates local) 1))  )
+      (up r (+ theta (* Omega t)))  )  )
+
+(define
+   (L-rotating-polar m Omega)
+   (compose
+      (L-free-polar m)
+      (F->C (F Omega))  )  )
+
+(define
+   (L-rotating-rectangular m Omega)
+   (compose
+      (L-rotating-polar m Omega)
+      (F->C r->p)  )  )
+
+(define demo1q
+   (  (L-rotating-rectangular 'm 'Omega)
+      (up 't
+         (up 'x_r 'y_r)
+         (up 'xdot_r 'ydot_r)  )  )  )
+
+(define demo1r
+   (  (  (Lagrange-equations (L-rotating-rectangular 'm 'Omega))
+         (up (literal-function 'x_r)
+             (literal-function 'y_r)))
+      't  )  )
