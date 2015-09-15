@@ -290,35 +290,36 @@
 (define demo1q
    (  (L-rotating-rectangular 'm 'Omega)
       (up 't
-         (up 'x_r 'y_r)
+         (up    'x_r    'y_r)
          (up 'xdot_r 'ydot_r)  )  )  )
 
 (define demo1r
    (  (  (Lagrange-equations (L-rotating-rectangular 'm 'Omega))
-         (up (literal-function 'x_r)
-             (literal-function 'y_r)))
+         (up
+            (literal-function 'x_r)
+            (literal-function 'y_r)  )  )
       't  )  )
 
 (define
    (  (T-pend m l g ys) local)
-   (let
+   (let*
       (  (t            (time local))
          (theta  (coordinate local))
-         (thetadot (velocity local))  )
-      (let*
-         (  (vys (D ys))
-            (vyst (vys t))  )
-         (* 1/2 m
-            (+ (square (* l thetadot))
-               (square vyst)
-               (* 2 l vyst thetadot (sin theta))  )  )  )  )  )
+         (thetadot (velocity local))
+         (vys (D ys))
+         (vyst (vys t))  )
+      (* 1/2 m
+         (+ (square (* l thetadot))
+            (square vyst)
+            (* 2 l vyst thetadot (sin theta))  )  )  )  )
 
 (define
    (  (V-pend m l g ys) local)
-   (let
-      (  (t (time local))
-         (theta (coordinate local))  )
-      (* m g (- (ys t) (* l (cos theta))))  )  )
+   (let*
+      (  (t           (time local))
+         (theta (coordinate local))
+         (yst (ys t))  )
+      (* m g (- yst (* l (cos theta))))  )  )
 
 (define L-pend (- T-pend V-pend))
 
