@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function errexit {
-   echo please provide a valid path to scmutils in \".basedir\"
+   echo 'please provide a valid path to scmutils in ".basedir"'
    exit 1
 }
 
@@ -11,7 +11,11 @@ BASE=$(cat .basedir)
 
 test -d $BASE || errexit
 
-if command -v rlwrap ; then
+if ! command -v xdvi > /dev/null ; then
+   echo 'WARNING: could not find "xdvi" - equation display will not function'
+fi
+
+if command -v rlwrap > /dev/null ; then
    READLINE="rlwrap -r -c -f scheme_completion.txt"
 else
    READLINE=""
