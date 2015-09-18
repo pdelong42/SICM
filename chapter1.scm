@@ -85,6 +85,7 @@
 (define q (find-path (L-harmonic 1.0 1.0) 0. 1. :pi/2 0. 3))
 
 ;(define win2 (frame 0. :pi/2 0. 1.2))
+(define win2 #f)
 
 (define
    (  (parametric-path-action Lagrangian t0 q0 t1 q1) intermediate-qs)
