@@ -6,7 +6,7 @@
 ; I'm doing this in scmutils, because after the sixth or seventh time
 ; of working through the tedious algebra myself, and getting a new
 ; wrong answer each time, I decided such mechanical manipulations are
-; best left to a computer (and doing such things does nothing to
+; best left to a computer (and doing such things myself does nothing to
 ; further my understanding).
 ;
 ; Much of what you see below is unpolished, and I plan to fill-in some
