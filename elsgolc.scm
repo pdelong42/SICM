@@ -1,7 +1,10 @@
-; These are some examples from Chapter 5 of "Calculus of Variations", by Lev D.
-; Elsgolc (ISBN 978-0486457994).
+; These are some examples from "Calculus of Variations",
+; by Lev D. Elsgolc (ISBN 978-0486457994).
 ;
-; ToDo: indicate exactly which example this is.
+
+; Chapter 5: Direct Methods
+; Section 3: Ritz's Method
+; Example 1
 ;
 ; I'm doing this in scmutils, because after the sixth or seventh time
 ; of working through the tedious algebra myself, and getting a new
