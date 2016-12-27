@@ -94,3 +94,13 @@
 ;|#
 
 ;(print-expression integrand2)
+
+; Chapter 5: Direct Methods
+; Section 3: Ritz's Method
+; Example 2
+;
+;(define
+;   (v_1 a b)
+;   (* pi/4 a b
+;      (+ (square (* a (+ a 1)))
+;         (square (* b (- a 1)))  )  )  )
