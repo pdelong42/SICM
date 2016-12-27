@@ -156,7 +156,7 @@
       (  (q  (coordinate local))
          (v  (velocity   local))  )
       (let
-         ((y (ref q 1)))
+         (  (y (ref q 1)))
          (- (* 1/2 m (square v))
             (* m g y)  )  )  )  )
 
@@ -210,7 +210,7 @@
 ;(show-expression demo1n)
 
 (define
-   ((F->C F) local)
+   (  (F->C F) local)
    (up
       (time local)
       (F    local)
@@ -327,3 +327,37 @@
          (literal-function 'theta)  )  't  )  )
 
 ;(show-expression demo1s)
+
+; already defined this above in demo1l
+(define
+   (  (L-uniform-acceleration m g) local)
+   (let
+      (  (q (coordinate local))
+         (v (velocity   local))  )
+      (let
+         (  (y (ref q 1)))
+         (- (* 1/2 m (square v))
+            (* m g y)  )  )  )  )
+
+(define
+   (  (dp-coordinates l y_s) local)
+   (let
+      (  (t     (time       local))
+         (theta (coordinate local))  )
+      (let
+         (  (x    (* l (sin theta)))
+            (y (- (y_s t)
+                  (* l (cos theta))  )  )  )
+         (up x y)  )  )  )
+
+(define
+   (L-pend m l g y_s)
+   (compose
+      (L-uniform-acceleration m g)
+      (F->C (dp-coordinates l y_s))  )  )
+
+(define demo1t
+   (  (L-pend 'm 'l 'g (literal-function 'y_s))
+      (up 't 'theta 'thetadot)  )  )
+
+;(show-expression demo1t)
